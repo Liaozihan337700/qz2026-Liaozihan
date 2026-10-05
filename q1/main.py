@@ -16,6 +16,12 @@ def analyze_log(filepath: str) -> dict:
                 except json.JSONDecodeError:
                     continue
                 total += 1
+                level = log["level"]
+                by_level[level] = by_level.get(level, 0) + 1
+                user = log["user"]
+                by_user[user] = by_user.get(user, 0) + 1
+                if level == "ERROR":
+                    last_error = log["message"]
     except FileNotFoundError:
         pass
 

@@ -11,6 +11,11 @@ def analyze_log(filepath: str) -> dict:
                 line = line.strip()
                 if not line:
                     continue
+                try:
+                    log = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                total += 1
     except FileNotFoundError:
         pass
 

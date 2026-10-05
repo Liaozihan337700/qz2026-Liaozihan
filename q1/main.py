@@ -5,6 +5,15 @@ def analyze_log(filepath: str) -> dict:
     by_user = {}
     last_error = None
 
+    try:
+        with open(filepath, 'r', encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+    except FileNotFoundError:
+        pass
+
     return {
         "total": total,
         "by_level": by_level,

@@ -165,7 +165,7 @@
 
 （在此填写，格式：`1. A  2. B  3. C  4. D  5. A  6. B  7. C  8. D  9. A  10. B`）
 
----
+---1.B 2.B 3.B 4.B 5.B 6.B 7.B 8.B 9.B 10.B
 
 ## 二、简答题（每题 10 分，共 3 题，满分 30 分）
 
@@ -183,7 +183,10 @@ c = copy.deepcopy(a)
 ```
 
 （在此作答）
-
+b是对a的浅拷贝，外层独立，但子列表就是a的
+c是对a的深拷贝，外层和内部子列表都完全独立
+所以执行后：b = [[1,2,99], [3,4]]
+           c = [[1,2], [3,4]]
 ### 第 2 题：字典与列表的综合应用
 
 以下代码模拟"从日志中提取用户信息"，请回答：
@@ -203,6 +206,23 @@ logs = [
 3. 解释为什么第 2 问不能直接用 `len(logs)` 得到结果，需要什么遍历结构？
 
 （在此作答）
+1.
+```
+res1 = [item for item in logs if item["level"] == "ERROR"]
+```
+2.
+```
+count = {}
+for item in logs:
+    name = item["user"]
+    if name in count:
+        count[name] += 1
+    else:
+        count[name] = 1
+```
+3.
+len(logs)只能从整体入手查看有多少条日志，无法单独统计某一[user]出现的次数
+用for循环遍历可以逐一取出每一条日志，判断每一个[user]的数量
 
 ### 第 3 题：异常处理设计
 
@@ -218,3 +238,12 @@ Day_10 中你写过 `safe_int(s)` 函数：能转就返回整数，不能转就�
 请写出函数代码，并说明：为什么这里用 `try/except` 比先用 `if` 判断再计算更好？
 
 （在此作答）
+```
+def safe_divide(a, b):
+    try:
+        q1 = float(a)
+        q2 = float(b)
+        return q1 / q2
+    except (ValueError,ZeroDivisionError):
+        return None
+```

@@ -183,8 +183,8 @@ c = copy.deepcopy(a)
 ```
 
 （在此作答）
-b是对a的浅拷贝，外层独立，但子列表就是a的
-c是对a的深拷贝，外层和内部子列表都完全独立
+b是对a的浅拷贝，外层独立，但子列表就是a的。
+c是对a的深拷贝，外层和内部子列表都完全独立。
 所以执行后：b = [[1,2,99], [3,4]]
            c = [[1,2], [3,4]]
 ### 第 2 题：字典与列表的综合应用
@@ -247,3 +247,4 @@ def safe_divide(a, b):
     except (ValueError,ZeroDivisionError):
         return None
 ```
+if要进行大量判断，而Python提倡先尝试执行再捕获错误，用try/except写更加便捷
